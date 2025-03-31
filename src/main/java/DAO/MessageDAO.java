@@ -1,7 +1,10 @@
-import java.sql.SQLException;
+package DAO;
+
 import java.util.List;
 import java.util.ArrayList;
-import java.util.sql.*;
+import java.sql.*;
+import Util.ConnectionUtil;
+import Model.Message;
 
 public class MessageDAO implements MessageDAOInterface{
     @Override

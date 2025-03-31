@@ -1,3 +1,7 @@
+package DAO;
+
+import Model.Message;
+
 import java.util.List;
 
 public interface MessageDAOInterface{
