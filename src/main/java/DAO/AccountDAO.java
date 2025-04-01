@@ -12,7 +12,7 @@ public class AccountDAO implements AccountDAOInterface {
         String sql = "INSERT INTO account (username, password) VALUES(?, ?)";
 
         try(Connection conn = ConnectionUtil.getConnection()){
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
             ps.setString(1, account.getUsername());
             ps.setString(2, account.getPassword());

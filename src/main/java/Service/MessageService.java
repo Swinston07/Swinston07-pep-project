@@ -48,7 +48,13 @@ public class MessageService {
         return exist;
     }
 
-    public boolean deleteMessage(int messageId){
-        return messageDAO.deleteMessage(messageId);
+    public Message deleteMessage(int messageId){
+        Message message = messageDAO.getMessageById(messageId);
+        boolean success = messageDAO.deleteMessage(messageId);
+
+        if(success)
+            return message;
+            
+        return null;
     }
 }

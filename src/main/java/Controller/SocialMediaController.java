@@ -109,11 +109,10 @@ public class SocialMediaController {
     private void deleteMessageHandler(Context ctx){
         int messageId = Integer.parseInt(ctx.pathParam("id"));
 
-        Message message = messageService.getMessageById(messageId);
+        Message message = messageService.deleteMessage(messageId);
 
         if(message!=null){
-            messageService.deleteMessage(messageId);
-            ctx.status(200);
+            ctx.status(200).json(message);
         }
         else
             ctx.status(200);
@@ -148,7 +147,7 @@ public class SocialMediaController {
         try{
             Account act = ctx.bodyAsClass(Account.class);
 
-            if(act.getUsername() == null || act.getUsername().isBlank() ||
+            if(act.getUsername()==null || act.getUsername().isBlank() ||
                act.getPassword()==null || act.getPassword().length() < 4){
                     ctx.status(400);
                     return;
