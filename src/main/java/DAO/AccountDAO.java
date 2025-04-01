@@ -8,7 +8,7 @@ import Model.Account;
 
 public class AccountDAO implements AccountDAOInterface {
     @Override
-    public void addAccount(Account account){
+    public Account addAccount(Account account){
         String sql = "INSERT INTO account (username, password) VALUES(?, ?)";
 
         try(Connection conn = ConnectionUtil.getConnection()){
@@ -18,10 +18,18 @@ public class AccountDAO implements AccountDAOInterface {
             ps.setString(2, account.getPassword());
 
             ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+
+            if(rs.next()){
+                int id = rs.getInt(1);
+                return new Account(id, account.getUsername(), account.getPassword());
+            }
         }
         catch (Exception e){
             e.printStackTrace();
         }
+        return null;
     }
 
     @Override

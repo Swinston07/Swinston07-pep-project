@@ -5,9 +5,10 @@ import Model.Message;
 import java.util.List;
 
 public interface MessageDAOInterface{
-    void addMessage(Message message);
+    Message addMessage(Message message);
+    Message getMessageById(int userId);
     List<Message> getAllMessages();
-    List<Message> getAllMessagesByUserId(int userId);
+    List<Message> getAllMessagesByUserId(int messageId);
     boolean updateMessage(int messageId, String newContent);
     boolean deleteMessage(int messageId);
 }
