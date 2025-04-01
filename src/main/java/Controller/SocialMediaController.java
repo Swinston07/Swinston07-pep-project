@@ -47,7 +47,7 @@ public class SocialMediaController {
 
         //Register and login endpoints
         app.post("/register", this::registerAccountHandler);
-        //app.post("/login"::this::loginHandler);
+        app.post("/login",this::loginHandler);
 
         return app;
     }
@@ -68,7 +68,7 @@ public class SocialMediaController {
         if(msg!=null)
             ctx.json(msg);
         else
-            ctx.status(404);
+            ctx.status(200);
     }
 
     private void getAllMessagesByUserIdHandler(Context ctx){
@@ -81,8 +81,8 @@ public class SocialMediaController {
         Message msg = ctx.bodyAsClass(Message.class);
         Message created = messageService.addMessage(msg);
 
-        if(created!=null){
-            ctx.status(201).json(created);
+        if(created!=null && created.getMessage_text().length()<=255){
+            ctx.status(200).json(created);
         }
         else{
             ctx.status(400);

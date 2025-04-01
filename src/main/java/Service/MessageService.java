@@ -18,9 +18,8 @@ public class MessageService {
         if(message.getMessage_text()==null || message.getMessage_text().trim().isEmpty())
             return null;
 
-        messageDAO.addMessage(message);
 
-        return message;
+        return messageDAO.addMessage(message);
     }
 
     public List<Message> getAllMessages(){
